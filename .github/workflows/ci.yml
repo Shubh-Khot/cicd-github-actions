@@ -24,15 +24,13 @@ jobs:
           cache: "pip"
 
       - name: Install dependencies
-        run: pip install -r app/requirements.txt
+        run: pip install -r app/requirements.txt flake8 bandit
 
       - name: Run flake8
         run: flake8 app/ --max-line-length=120
 
       - name: Run bandit (security scan)
-        run: |
-          pip install bandit
-          bandit -r app/ -ll
+        run: bandit -r app/ -ll
 
   test:
     name: Unit & Integration Tests
